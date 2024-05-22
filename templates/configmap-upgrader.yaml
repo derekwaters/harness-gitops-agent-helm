@@ -1,0 +1,17 @@
+# Source: gitops-helm/templates/upgrader/harness-upgrader-cm.yaml
+apiVersion: v1
+data:
+  UPGRADER_GITOPS_ACCOUNT_IDENTIFIER: XUvKv0fQQgOyK4rpSFd3nw
+  UPGRADER_GITOPS_AGENT_IDENTIFIER: harnesshelmtest
+  UPGRADER_GITOPS_ORG_IDENTIFIER: default
+  UPGRADER_GITOPS_PROJECT_IDENTIFIER: notesappexample
+  UPGRADER_MODE: GitopsAgent
+  UPGRADER_NAMESPACE: my-target-namespace
+  UPGRADER_WORKLOAD_NAME: gitops-agent
+  UPGRADER_CONTAINER_NAME: gitops-agent
+  UPGRADER_GITOPS_AGENT_HTTP_TARGET: https://app.harness.io/prod1/gitops
+  UPGRADER_GITOPS_USE_V2: "true"
+  UPGRADER_GITOPS_ALL: "false"
+kind: ConfigMap
+metadata:
+  name: gitops-agent-upgrader

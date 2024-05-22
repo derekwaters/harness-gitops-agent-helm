@@ -1,0 +1,82 @@
+# Source: gitops-helm/templates/gitops-agent/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gitops-agent
+  labels:
+    helm.sh/chart: gitops-helm-1.1.6
+    app.kubernetes.io/name: harness-gitops-agent
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: gitops-agent
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: harness-gitops
+    app.kubernetes.io/version: "v0.74.1"
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  - configmaps
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - external-secrets.io
+  resources:
+    - externalsecrets
+  verbs:
+    - get
+    - list
+    - watch
+    - update
+    - patch
+    - delete
+    - create
+- apiGroups:
+    - generators.external-secrets.io
+  resources:
+    - gcraccesstokens
+    - ecrauthorizationtokens
+  verbs:
+    - get
+    - list
+    - watch
+    - update
+    - patch
+    - delete
+    - create
+- apiGroups:
+  - argoproj.io
+  resources:
+  - applications
+  - appprojects
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - update
+  - delete
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  - pods
+  verbs:
+  - create
+  - list
+  - watch
+  - get
+- apiGroups:
+    - apps
+  resources:
+    - deployments
+  verbs:
+    - update
+    - patch

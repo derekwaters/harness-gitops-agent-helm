@@ -1,0 +1,39 @@
+# Source: gitops-helm/templates/upgrader/role.yaml
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gitops-agent-upgrader
+  labels:
+    helm.sh/chart: gitops-helm-1.1.6
+    app.kubernetes.io/name: harness-gitops-agent-upgrader
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: gitops-agent-upgrader
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: harness-gitops
+    app.kubernetes.io/version: "v0.74.1"
+rules:
+  - apiGroups:
+    - batch
+    - apps
+    - extensions
+    resources:
+    - cronjobs
+    verbs:
+    - get
+    - list
+    - watch
+    - update
+    - patch
+  - apiGroups:
+    - extensions
+    - apps
+    resources:
+    - deployments
+    - statefulsets
+    verbs:
+    - get
+    - list
+    - watch
+    - create
+    - update
+    - patch

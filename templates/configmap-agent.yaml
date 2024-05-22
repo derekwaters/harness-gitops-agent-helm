@@ -1,0 +1,39 @@
+# Source: gitops-helm/templates/gitops-agent/configmap.yaml
+apiVersion: v1
+data:
+  GITOPS_ACCOUNT_IDENTIFIER: XUvKv0fQQgOyK4rpSFd3nw
+  GITOPS_AGENT_IDENTIFIER: harnesshelmtest
+  GITOPS_ORG_IDENTIFIER: default
+  GITOPS_PROJECT_IDENTIFIER: notesappexample
+  GITOPS_SERVICE_HTTP_TLS_ENABLED: "false"
+  GITOPS_SERVICE_HTTP_CERT_FILES: /tmp/ca.bundle
+  GITOPS_SERVICE_MTLS_ENABLED: "false"
+  GITOPS_SERVICE_HTTP_CLIENT_CERT: /etc/mtls/client.crt
+  GITOPS_SERVICE_HTTP_CLIENT_KEY: /etc/mtls/client.key
+  AGENT_HTTP_TARGET: https://app.harness.io/gitops
+  GITOPS_SERVICE_PROTOCOL: HTTP1
+  GITOPS_AGENT_ENABLE_RECONCILE: "true"
+  GITOPS_AGENT_RECONCILE_INTERVAL: "100"
+  GITOPS_AGENT_DISCOVER_APPLICATION_PODS_DURATION_IN_SECS: "120"
+  LOG_LEVEL: debug
+  GITOPS_AGENT_FETCH_TYPE: "POLLER"
+  GITOPS_ARGOCD_REPO: argocd-repo-server
+  GITOPS_ARGOCD_REDIS: argocd-redis
+  GITOPS_ARGOCD_REDIS_HA: redis-ha
+  GITOPS_ARGOCD_REDIS_HA_PROXY: redis-ha-haproxy
+  GITOPS_ARGOCD_APP_CONTROLLER: argocd-application-controller
+  GITOPS_ARGOCD_APPSET_CONTROLLER: argocd-applicationset-controller
+  GITOPS_AGENT_AVAILABILITY_MODE: NON-HA
+  ARGOCD_SERVER_REPO_SERVER: argocd-repo-server:8081
+  REDIS_SERVER: argocd-redis:6379
+kind: ConfigMap
+metadata:
+  labels:
+    helm.sh/chart: gitops-helm-1.1.6
+    app.kubernetes.io/name: harness-gitops-agent-cm
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: gitops-agent
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: harness-gitops
+    app.kubernetes.io/version: "v0.74.1"
+  name: gitops-agent

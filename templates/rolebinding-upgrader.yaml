@@ -1,0 +1,21 @@
+# Source: gitops-helm/templates/upgrader/rolebinding.yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gitops-agent-upgrader
+  namespace: "my-target-namespace"
+  labels:
+    helm.sh/chart: gitops-helm-1.1.6
+    app.kubernetes.io/name: harness-gitops-agent-upgrader
+    app.kubernetes.io/instance: argocd
+    app.kubernetes.io/component: gitops-agent-upgrader
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: harness-gitops
+    app.kubernetes.io/version: "v0.74.1"
+roleRef:
+  kind: Role
+  name: gitops-agent-upgrader
+  apiGroup: ""
+subjects:
+  - kind: ServiceAccount
+    name: gitops-agent-upgrader
